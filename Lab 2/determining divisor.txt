@@ -1,0 +1,19 @@
+START
+
+INPUT n
+INPUT N
+IF N==0 THEN
+   PRINT "Error"
+ELSE
+  IF n%N==0 THEN
+    PRINT "It is a divisor"
+    IF N%2==0 THEN
+      PRINT "It is even"
+   ELSE
+      PRINT "It is odd"
+  ELSE
+      PRINT "Not a divisor"
+
+END 
+
+
