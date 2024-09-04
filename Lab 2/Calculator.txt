@@ -1,0 +1,26 @@
+START
+Print operators for user to select
+Take an operator as input
+Take two numbers as input
+Compare operator input with '+'
+Add both input numbers if true and store the result in a variable 
+Compare operator input with '-'
+Subtract both input numbers if true and store the result in a variable
+Compare operator input with '*'
+Multiply both input numbers if true and store the result in a variable 
+Compare operator input with '/'
+If second input number is zero, Display error
+Else divide both input numbers and store the result in a variable
+Compare operator input with '%'
+If second input number is zero, Display error
+Else apply % on both input numbers and store the result in a variable
+Print result
+END
+
+
+ 
+
+
+
+
+

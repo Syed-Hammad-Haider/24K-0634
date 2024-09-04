@@ -1,0 +1,10 @@
+START
+Initialize a list of month names in the order from January to December
+Input an integer value from the user(month number), and store it in a variable
+Proceed If the input number is between 1 and 12, inclusive
+Access the month name from the list using the input number by subtracting 1, list index starts at 0 (months[month number-1])
+Print corresponding month name
+If input month number is not between 1 and 12, inclusive
+Print a message asking the user to enter a number between 1 and 12.
+END
+

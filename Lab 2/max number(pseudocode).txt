@@ -1,0 +1,16 @@
+
+START
+
+INPUT num1
+INPUT num2
+INPUT num3 
+
+maximum=num1
+
+IF num2>maximum THEN
+   maximum=num2
+IF num3>maximum THEN
+   maximum=num3
+PRINT maximum
+
+END

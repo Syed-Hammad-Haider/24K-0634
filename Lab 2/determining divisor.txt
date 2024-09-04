@@ -1,0 +1,16 @@
+START
+Input a number
+Input a divisor number
+If divisor number is equals to zero, display error
+Else if the (number MOD divisor number)is equals to zero
+Print it is a divisor 
+If the (number MOD divisor number) is not equal to zero
+Print it is not a divisor 
+To check  if divisor is odd or even; (divisor number MOD 2)
+If answer equals to zero, display as even
+Else display as odd
+END
+
+
+
+

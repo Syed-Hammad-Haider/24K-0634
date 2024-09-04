@@ -1,0 +1,17 @@
+START
+
+PRINT "Enter number 1"
+INPUT num1
+PRINT "Enter number 2"
+INPUT num2
+PRINT "Enter operator(+ OR -)"
+INPUT operator
+
+IF operator=="+" THEN
+   result = num1+num2
+IF operator=="-" THEN
+   result=num1-num2
+
+PRINT "result= ",result
+
+END
