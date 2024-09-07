@@ -1,0 +1,4 @@
+for int in C++ these are the common sizes
+Minimum size: 16 bits (range from -32,767 to 32,767).
+Common size: 32 bits (range from -2,147,483,648 to 2,147,483,647).
+The value assigned to the variable using 'int' in the question is outside its range, which leads to incorrect results or undefined behavior.
