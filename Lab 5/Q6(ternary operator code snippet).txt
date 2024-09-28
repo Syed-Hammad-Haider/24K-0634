@@ -1,0 +1,1 @@
+condition (5>8) evaluates to False part which is 1!=2<5, due to operator precedence expression becomes 1!=(2<5). Expression in the bracket evaluates to 1(True) and eventually 1!=1 becomes 0 and False part value is assigned to x(x=30).

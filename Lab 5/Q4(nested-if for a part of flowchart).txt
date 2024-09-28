@@ -1,0 +1,13 @@
+if (pH>7){
+   if (pH<12)
+      printf("Alkaline");
+   else
+      printf("very alkaline");
+else
+   if (pH==7){
+      printf("Nuetral");
+   else if (pH>2)
+      printf("Acidic");
+   else
+      printf("Very acidic");
+
