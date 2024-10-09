@@ -10,4 +10,4 @@ int main(){
 	}
 
 
-do-while loop system would be better as it allows the user to atleast enter a value once, and then checks condition later on after running loop once.  
+//do-while loop system would be better as it allows the user to atleast enter a value once, and then checks condition later on after running loop once.  
