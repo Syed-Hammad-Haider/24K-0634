@@ -1,0 +1,40 @@
+//Create a class called LoanHelper, which helps the user calculate their loan payments. The class
+//should have a variable that stores interest rate for the loan as a user defined constant value. Aside
+//from the that, it also stores the amount for the loan taken and amount of months that the user will
+//repay the loan in. The loan repayment should be calculated on a monthly basis, and the interest rate
+//should be applied over the monthly return amount. The output should be something like:
+//“You have to pay 999 every month for 12 monthsto repay your loan”
+//Note: first divide loan amount by number of months, then apply the interest rate on it. Interest rate
+//should be a value between 0-0.5%
+
+#include <iostream>
+using namespace std;
+class LoanHelper{
+	const  float rate;
+	float amount;
+	int months;
+	float amount_to_pay;
+  public:
+	LoanHelper(float a,int m,float r):rate(r),amount(a),months(m){
+	}
+	void calculation(){
+		amount_to_pay=(amount/months)+((amount/months)*rate);
+	}
+	void display(){
+		cout<<"You have to repay "<<amount_to_pay<<" every month for "<<months<<" months to repay your loan"<<endl;
+	}	
+};
+
+int main(){
+	float a,r;
+	int m;
+	cout<<"Enter amount of loan taken: ";
+	cin>>a;
+	cout<<"Enter number of months to repay loan in";
+	cin>>m;
+	cout<<"Enter interest rate value between 0-0.5%"<<endl;
+	cin>>r;
+	if(r<=0.5){
+		LoanHelper obj(r,a,m);
+		obj.display();}
+}
