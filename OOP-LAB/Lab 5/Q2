@@ -15,10 +15,10 @@ class LoanHelper{
 	int months;
 	float amount_to_pay;
   public:
-	LoanHelper(float a,int m,float r):rate(r),amount(a),months(m){
+	LoanHelper(float a,int m,float r):amount(a),months(m),rate(r){
 	}
 	void calculation(){
-		amount_to_pay=(amount/months)+((amount/months)*rate);
+		amount_to_pay=(amount/months)+((amount/months)*rate)/100;
 	}
 	void display(){
 		cout<<"You have to repay "<<amount_to_pay<<" every month for "<<months<<" months to repay your loan"<<endl;
@@ -30,11 +30,12 @@ int main(){
 	int m;
 	cout<<"Enter amount of loan taken: ";
 	cin>>a;
-	cout<<"Enter number of months to repay loan in";
+	cout<<"Enter number of months to repay loan in: ";
 	cin>>m;
-	cout<<"Enter interest rate value between 0-0.5%"<<endl;
+	cout<<"Enter interest rate value between 0-0.5%: ";
 	cin>>r;
 	if(r<=0.5){
-		LoanHelper obj(r,a,m);
+		LoanHelper obj(a,m,r);
+		obj.calculation();
 		obj.display();}
 }
