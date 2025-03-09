@@ -1,0 +1,141 @@
+//You are required to implement a simple message handling system using object-oriented
+//programming in C++.
+//Task Breakdown:
+//1. Create a Message class
+//o It should have a private instance variable text of type string to store the message
+//content.
+//o Implement a method toString() that returns the message text.
+//o Provide a setter method to modify the text value.
+//2. Create an SMS class that inherits from Message
+//o It should have an additional instance variable recipientContactNo to store the
+//recipient’s phone number.
+//o Implement appropriate accessor and mutator methods.
+//o Override the toString() method to return a concatenated string containing the
+//recipient’s contact number and the message text.
+//3. Create an Email class that inherits from Message
+//o It should have additional instance variables: sender, receiver, and subject.
+//o Implement appropriate accessor and mutator methods.
+//o Override the toString() method to return a concatenated string containing sender,
+//receiver, subject, and the message text.
+//4. Implement Keyword Search Function
+//o Define a function:
+//o bool ContainsKeyword(const Message& messageObject, const string& keyword);
+//o This function should return true if the text of the Message object contains the
+//given keyword, otherwise return false.
+//
+//5. Implement Message Encoding
+//o Define a function to encode a given message using the following scheme:
+// Each character should be replaced by the next character in the alphabet
+//(e.g., ‘A’ → ‘B’, ‘b’ → ‘c’, ‘Z’ → ‘A’, ‘z’ → ‘a’).
+// Example: If the message is "This is Java", the encoded message should be
+//"Uijt jt Kbwb".
+//6. Test the Implementation
+//o In the main() function, create sample objects of SMS and Email, assign values,
+//and test the functionalities including keyword search and encoding.
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Message {
+protected:
+    string text;
+
+public:
+    string toString() const {
+        return text;
+    }
+
+    void SetText(const string& s) {
+        text = s;
+    }
+};
+
+class SMS : public Message {
+private:
+    string recipientContactNo;
+
+public:
+    void SetContactNo(const string& s) {
+        recipientContactNo = s;
+    }
+
+    string GetContactNo() const {
+        return recipientContactNo;
+    }
+
+    string toString() const {
+        return Message::toString() + " | Contact No: " + recipientContactNo;
+    }
+};
+
+class Email : public Message {
+private:
+    string sender;
+    string receiver;
+    string subject;
+
+public:
+    void SetSender(const string& s) {
+        sender = s;
+    }
+
+    string GetSender() const {
+        return sender;
+    }
+
+    void SetReceiver(const string& s) {
+        receiver = s;
+    }
+
+    string GetReceiver() const {
+        return receiver;
+    }
+
+    void SetSubject(const string& s) {
+        subject = s;
+    }
+
+    string GetSubject() const {
+        return subject;
+    }
+
+    string toString() const {
+        return "Sender: " + sender + " | Receiver: " + receiver + " | Subject: " + subject + " | Message: " + Message::toString();
+    }
+
+    bool ContainsKeyword(const Message message,const string& keyword) const {
+        int i=message.toString().find(keyword);
+        if(i>=0)
+        return true;
+        else
+        return false;
+    }
+
+    string Encode() const {
+        string t = Message::toString();
+        for (int i = 0; i < t.length(); i++) {
+            if ((t[i] >= 'A' && t[i] <= 'Z') || (t[i] >= 'a' && t[i] <= 'z')) {
+                t[i] = t[i] + 1;
+            }
+        }
+        return t;
+    }
+};
+
+int main() {
+    SMS sms;
+    sms.SetText("Hello, my name is Hammad");
+    sms.SetContactNo("1234");
+    cout << "SMS: " << sms.toString() << endl;
+    Email email;
+    email.SetText("This is an email");
+    email.SetSender("alice@example.com");
+    email.SetReceiver("bob@example.com");
+    email.SetSubject("Meeting Reminder");
+    cout << "Email: " << email.toString() << endl;
+    cout <<(email.ContainsKeyword(sms,"Reminder") ? "Yes" : "No") << endl;
+    cout << email.Encode() << endl;
+
+    return 0;
+}
