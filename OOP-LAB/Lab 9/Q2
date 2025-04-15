@@ -1,0 +1,92 @@
+//Problem: A homeowner wants to integrate smart lights and thermostats from different
+//brands into a single app. The system must provide a unified way to turn devices on/off,
+//adjust settings, and check statuses without requiring users to interact with brand-specific
+//interfaces. Future devices (e.g., smart locks) should integrate without altering the core
+//system.
+//Classes and Structure:
+//• Abstract Class SmartDevice:
+//o Member Functions:
+//
+//▪ turnOn(): Pure virtual function to activate the device.
+//▪ turnOff(): Pure virtual function to deactivate the device.
+//▪ getStatus(): Pure virtual function to return the device’s current state.
+//
+//• Derived Class LightBulb:
+//o Data Members:
+//▪ isOn (bool): Tracks if the light is on/off.
+//▪ brightness (int): Stores brightness level (0-100%).
+//o Implements turnOn(), turnOff(), and getStatus() for light control.
+//• Derived Class Thermostat:
+//o Data Members:
+//▪ isOn (bool): Tracks if the thermostat is active.
+//▪ temperature (double): Stores the current temperature setting.
+//o Implements turnOn(), turnOff(), and getStatus() for temperature control.
+//
+//Flow:
+//• Create LightBulb and Thermostat objects.
+//• Turn devices on/off and display their statuses.
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class SmartDevice{
+	public:
+		virtual void turnOn()=0;
+		virtual void turnOff()=0;
+		virtual bool getStatus()=0;
+};
+
+class LightBulb:public SmartDevice{
+	bool isOn;
+	int brightness;
+	public:
+		LightBulb(bool s,int b){
+			isOn=s;
+			brightness=b;
+		}
+		
+		void turnOn(){
+			isOn=true;
+		}
+		void turnOff(){
+			isOn=false;
+		}
+		bool getStatus(){
+			return isOn;
+		}		
+};
+
+class Thermostat:public SmartDevice{
+	bool isOn;
+	double temperature;
+	public:
+		Thermostat(bool s,int t){
+			isOn=s;
+		    temperature=t;
+		}
+		void turnOn(){
+			isOn=true;
+		}
+		void turnOff(){
+			isOn=false;
+		}
+		bool getStatus(){
+			return isOn;
+		}		
+};
+
+int main(){
+	LightBulb bulb(true,55);
+	Thermostat thermostat(false,0);
+	SmartDevice *bptr1=&bulb;
+	SmartDevice *bptr2=&thermostat;
+    
+    bptr1->turnOff();
+    cout<<"Bulb Status: "<<bptr1->getStatus()<<endl;
+    bptr2->turnOn();
+    cout<<"Thermostat Status: "<<bptr2->getStatus()<<endl;
+    
+    return 0;
+}
