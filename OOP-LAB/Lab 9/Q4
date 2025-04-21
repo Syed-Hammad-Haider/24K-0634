@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class PaymentMethod{
+	public:
+		virtual void processPayment(double amount)=0;
+};
+
+class CreditCard:public PaymentMethod{
+	string cardNumber;
+	public:
+		CreditCard(string c):cardNumber(c){};
+		void processPayment(double amount){
+			if(cardNumber=="1234"){
+				cout<<"SUCCESS"<<endl;
+			}
+			else{
+				cout<<"FAILURE"<<endl;
+			}
+		}
+};
+
+class DigitalWallet: public PaymentMethod{
+	double balance;
+	public:
+		DigitalWallet(double b):balance(b){};
+		void processPayment(double amount){
+			if(amount<=balance){
+				balance-=amount;
+				cout<<"Remaining balance: "<<balance<<endl;
+			}
+			else{
+				cout<<"Not enough balance!"<<endl;
+			}
+		}
+};
+
+
+int main(){
+	PaymentMethod *bptr1;
+	PaymentMethod *bptr2;
+    CreditCard credit("1234");
+    DigitalWallet digital(203000);
+	bptr1=&credit;
+	bptr2=&digital;
+	bptr1->processPayment(20000);
+	bptr2->processPayment(20000);
+	return 0;}
