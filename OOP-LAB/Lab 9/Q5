@@ -1,0 +1,57 @@
+#include <iostream>
+using namespace std;
+
+class Activity {
+public:
+    virtual double calculateCaloriesBurned() const = 0; 
+    virtual ~Activity() {}
+};
+class Running : public Activity {
+private:
+    double distance; 
+    double time;   
+
+public:
+    Running(double d, double t) : distance(d), time(t) {}
+    double calculateCaloriesBurned() const override {
+        double speed = distance / (time / 60.0);
+        double MET = 0;
+
+        if (speed < 8.0) MET = 6.0;
+        else if (speed < 9.7) MET = 8.3;
+        else if (speed < 11.3) MET = 9.8;
+        else if (speed < 12.9) MET = 11.0;
+        else if (speed < 14.5) MET = 11.8;
+        else if (speed < 16.0) MET = 12.8;
+        else MET = 14.5;
+
+        return MET * (time / 60.0);
+    }
+};
+
+class Cycling : public Activity {
+private:
+    double speed; 
+    double time;  
+
+public:
+    Cycling(double s, double t) : speed(s), time(t) {}
+    double calculateCaloriesBurned() const override {
+        double MET = 0;
+
+        if (speed < 16.0) MET = 4.0;
+        else if (speed < 19.0) MET = 6.0;
+        else if (speed < 22.0) MET = 8.0;
+        else if (speed < 25.0) MET = 10.0;
+        else MET = 12.0;
+        return MET * time;
+    }
+};
+
+int main() {
+    Running run(5.0, 30.0);
+    Cycling cycle(20.0, 1.0);    
+
+    cout << "Calories burned during running: " << run.calculateCaloriesBurned() << " units" << endl;
+    cout << "Calories burned during cycling: " << cycle.calculateCaloriesBurned() << " units" << endl;
+    return 0;}
