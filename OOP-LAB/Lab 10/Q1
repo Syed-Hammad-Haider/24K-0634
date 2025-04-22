@@ -1,0 +1,83 @@
+//Q1. You are building a student record management tool for a university system.
+//Requirements:
+//1. Define a structure Student with the following fields:
+//○ int id
+//○ string name
+//○ float gpa
+//2. Prompt the user to enter data for 5 students.
+//3. Write these records to a file named students.txt using ofstream with ios::out
+//mode.
+//4. Then, allow the user to append 1 additional student record using ios::app mode
+//(open in append mode and write without erasing old content).
+//5. Finally, read and display all student records from the file using ifstream.
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+struct Student {
+    int id;
+    string name;
+    float gpa;
+};
+
+Student inputStudent() {
+    Student s;
+    cout << "Enter ID: ";
+    cin >> s.id;
+    cin.ignore();
+    cout << "Enter Name: ";
+    getline(cin, s.name);
+    cout << "Enter GPA: ";
+    cin >> s.gpa;
+    return s;
+}
+
+
+void writeStudentToFile(ofstream &outfile, const Student &s) {
+    outfile << s.id << "," << s.name << "," << s.gpa << endl;
+}
+
+void readStudentsFromFile(const string &filename) {
+    ifstream infile(filename);
+    if (!infile) {
+        cerr << "Unable to open file " << endl;
+        return;
+    }
+    cout << "\n--- Student Records ---\n";
+    string line;
+    while (getline(infile, line)) {
+        cout << line << endl;
+    }
+    infile.close();
+}
+int main() {
+    const string filename = "students.txt";
+
+    ofstream outfile(filename, ios::out);
+    if (!outfile) {
+        cerr << "Error opening file for writing!" << endl;
+        return 1;
+    }
+    cout << "Enter data for 5 students:\n";
+    for (int i = 0; i < 5; ++i) {
+        cout << "\nStudent " << (i + 1) << ":\n";
+        Student s = inputStudent();
+        writeStudentToFile(outfile, s);
+    }
+    outfile.close();
+
+    // Step 4: Append 1 more student using append mode
+    ofstream appendfile(filename, ios::app);
+    if (!appendfile) {
+        cerr << "Error opening file for appending!" << endl;
+        return 1;
+    }
+    cout << "\nEnter data for 1 additional student:\n";
+    Student s = inputStudent();
+    writeStudentToFile(appendfile, s);
+    appendfile.close();
+    readStudentsFromFile(filename);
+
+    return 0;
+}
